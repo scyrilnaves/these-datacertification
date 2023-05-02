@@ -1,0 +1,11 @@
+version: "2.1"
+
+services:
+  sawtooth-shell:
+    image: hyperledger/sawtooth-shell:chime
+    container_name: sawtooth-shell-default
+    volumes:
+      - ./:/sawtooth-transaction-cpp
+    entrypoint: "bash -c \"\
+        tail -f /dev/null \
+        \""

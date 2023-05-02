@@ -1,0 +1,68 @@
+# Copyright 2019 Cargill Incorporated
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keys-config
+  namespace: sim-sawtooth-net
+data:
+  pbft0priv: d22f10055ab1eaf283da40a43d792dfc33580ce68832c071015ac6f81e66ce75
+  pbft0pub: 03a6004c2968f23481da20c12786e85af08eff8bcd50d68355b1516d79798f6aa3
+  pbft1priv: 8aa2eabee3aa1b1819d24820aaeda240faaa149a9c2886f46177ab71f06f693d
+  pbft1pub: 02bb114011541cccc3d4de98cc237b1a7f6210522f0162228a256c7356f7fc5e02
+  pbft10priv: a88ce2a161f7594fb0b4815357f31149d26a0ca686a0fd1cf6fb30b7ff2b5262
+  pbft10pub: 02755741138d732ffb4cec91ae70cb66eee6b836d647a108dca6a642e9a90f7422
+  pbft11priv: 6a98faec2e03cf4cc42ddce4f72ca97ffcc6aac52aa766c235079af1c3e14297
+  pbft11pub: 0306d0f050cd8dab9988ff14eb925771897dda171a61ffa550d55fcb71bc9f518d
+  pbft12priv: 270689020e9bacb82958d3606fb6917baa095ec13bdf12d895acbee5d370d3ac
+  pbft12pub: 03a0e6721b875a184b72caaeb1ba662547f9b0513a811f61865192ef59cd4db793
+  pbft13priv: 1bf31e6ce7dbb0e9a2760f0e7443b983dfe7d315c86018f52b95488d869b61ac
+  pbft13pub: 026302cb135a30599d4693c4353384c089cf696d7ea0a14223058dc02eec3385df
+  pbft14priv: b8f477db2c9e55d39a029c4d30685882e9e6bf1c1fc4bc23960fa6d0d1314726
+  pbft14pub: 03aae1427c1856e98f747e6d42e7d67d89d6521cd263c3bbb8ab9499f47548019e
+  pbft15priv: 82143c53223e7afd3b800b11cda0a69688edfce358605059a08b3334bb3e30e3
+  pbft15pub: 022f771bd90e71d2026abfac148ea23bab8d4abfc370cc00720045298878092adb
+  pbft16priv: 6afbeb309fb52aa17b3343ee37e482628b02a100572568219ef18fb0fa79224a
+  pbft16pub: 031d2ccf87dbf406ac574a6208c6e7af50b1ed98667fa8e29d8974d16a87ba82de
+  pbft17priv: 63f44a2cec8a4f44984276ea49ae2715a71ef52468f11578ae7a7ea0b37045e2
+  pbft17pub: 03b5f1f057e5febfa6ee456cf29a6a4080d84b7527f927fb13c503d8d53ef1d8c0
+  pbft18priv: 5385b06e5f1afb36c94dc151c31b473e4c130c9d78b5200ad22be2ed7ac817f8
+  pbft18pub: 0379b95e4899f65a86747c11218c42cddf8e6c9056ebc7e8b7a1afe996b1b47e23
+  pbft19priv: 7cef929bb32fd7d3d41bc741871cb77941e950a6efb0616748505c7eccbab4d3
+  pbft19pub: 03faebd174e6f43f25d50e47826576457056f52dbd72e92188f75470421312c8c7
+  pbft2priv: e15674389614b0c26c42ea8f95585b6fc61c03eaa8077a499e73266a3b22cf91
+  pbft2pub: 03c30205d52a0a903bfad9625dbe78a2654ce8dfacd3a55a07476ce10ccad98d11
+  pbft20priv: 50d8a1b2039e03fbbb9670ce4892d9b5de4ed23d877ba21a418f91d11e2f4bcd
+  pbft20pub: 0395c7ffae33acefaf21ba4a79278442892dc3e6cb972562dfaeb827ca1b25c5d3
+  pbft21priv: b2188238c41d80ced260ab9fb7f002b07bb633b2cdb9950af4f5593ac9de97d5
+  pbft21pub: 022eed7c978c152170a828ee69b19a7b088d821d5678085e444299c0bafb33a5ca
+  pbft22priv: 548b6d304ae89e476c115cc45d4fb177d06a0680dea373ac4195e05c8c9fea19
+  pbft22pub: 033bfa333ed71f4f7a8ba9274c75e1a9673e30e6de819df5bcf23a6926ceb4894a
+  pbft23priv: dbdd57859a83aba0d067379f8136326030bac433b9c30a24e6e6f1b1e1433a0e
+  pbft23pub: 02ff197655c396ff5961ecf127ddd267b6ba5d615bd260328d8c1a3fbea7ee5965
+  pbft3priv: ee91ea5981558747c4d71df2a19d9f8ae1c20db44c0e63e94df4bbe5cca8cf27
+  pbft3pub: 03937dde512a3670bea8e4ebdcfc7884bd7ff68264fda4c211e60db4347dccf320
+  pbft4priv: 70002ea1f3ecba745cc27c412cdb97abc5e16ee5fd33a4214ac149e8fe612874
+  pbft4pub: 021931a6520e52256d085877c1abf7063fae253764e6b0e5f9df26dd83fb5594b6
+  pbft5priv: 4a0dc0aa4a4e9f59b4c5d59e482ee21d2e99e86628558eb7b710058d046daf8e
+  pbft5pub: 0232f6d5159e2a87bbb060a6d79a3f929e7dce23c4943b8ba31ec568ca729db322
+  pbft6priv: 024b38748a6a1677acba1d7900c4400d8f1dd5163d4a5074b341f84949e884e3
+  pbft6pub: 02a913a49d99d1a228db8cd42999ff53fbb8cf403e438b06539e0a06b38b2d26f0
+  pbft7priv: fff5a8a299f264afa37b8e2c341bd70846dd6d7d406ead9d7e3bed27f96d89d8
+  pbft7pub: 02af5a66d17ec7b7d0e77e274ce766a726747cbb6a15c5c530c1a71c065bda5881
+  pbft8priv: 7be56fd69dfc319086c304091a4a828fe0ba697e25c2ed5f206d1a44427fc0d8
+  pbft8pub: 0356899d59eaa804c53bf9e8536f43873eb3596d384501dd3080ff7ca376b760db
+  pbft9priv: 8e838e002a6f1f572f6886680839b311123215f549e572f05c9f7d1f4f271e48
+  pbft9pub: 031d407d9aaa50176a34b3d0c50088738ad2ab84fc81bbf660c84e626cf32f5f45

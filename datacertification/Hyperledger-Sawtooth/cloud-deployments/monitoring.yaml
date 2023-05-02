@@ -1,0 +1,287 @@
+apiVersion: v1
+kind: List
+
+items:
+
+#-----------------INFLUXDB-PERSISTENT-VOLUME-----------------------
+
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: task-pv-volume
+    #namespace: monitoring
+    labels:
+      type: local
+  spec:
+    storageClassName: manual
+    capacity:
+      storage: 3Gi
+    accessModes:
+      - ReadWriteOnce
+    persistentVolumeReclaimPolicy: Recycle
+    hostPath:
+      path: "/datas/influxdb"
+
+#------------------INFLUXDB-PERSISTENT-VOLUME-CLAIM----------------------
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      app: influxdb
+    name: influxdb-pvc
+    namespace: monitoring
+  spec:
+    storageClassName: manual
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Gi
+
+#-------------------INFLUXDB-SECRET-----------------------------
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: influxdb-creds
+    namespace: monitoring
+  type: Opaque
+  stringData:
+    INFLUXDB_DB: "metrics"
+    INFLUXDB_ADMIN_USER: admin
+    INFLUXDB_ADMIN_PASSWORD: admin
+    INFLUXDB_USER: metrics
+    INFLUXDB_USER_PASSWORD: metrics
+    INFLUXDB_HOST: influxdb
+    
+ 
+#-------------------INFLUXDB-DEPLOYMENT---------------------------
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    namespace: monitoring
+    annotations:
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: influxdb
+    name: influxdb
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: influxdb
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: influxdb
+      spec:
+        containers:
+        - envFrom:
+          - secretRef:
+              name: influxdb-creds
+          image: docker.io/influxdb:1.8.4
+          
+          imagePullPolicy: IfNotPresent
+          name: influxdb
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/influxdb
+            name: var-lib-influxdb
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: var-lib-influxdb
+          persistentVolumeClaim:
+            claimName: influxdb-pvc
+#-------------------------INFLUXDB-SERVICE------------------------------
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: influxdb
+    namespace: monitoring
+  spec:
+    type: ClusterIP
+    selector:
+      app: influxdb
+    ports:
+      - name: "8086"
+        protocol: TCP
+        port: 8086
+        targetPort: 8086
+
+#------------------------TELEGRAF-SECRET----------------------------------
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: telegraf-secrets
+    namespace: monitoring
+  type: Opaque
+  stringData:
+    INFLUXDB_DB: metrics
+    INFLUXDB_URL: http://influxdb:8086
+    INFLUXDB_USER: metrics
+    INFLUXDB_USER_PASSWORD: metrics
+    
+
+#----------------------TELEGRAF-CONFIGMAP---------------------------------
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: telegraf-config
+    namespace: monitoring
+  data:
+    telegraf.conf: |+
+      [[outputs.influxdb]]
+        urls = ["http://influxdb:8086"]
+        database = "metrics"
+        username = "metrics"
+        password = "metrics"# Statsd Server
+      [[inputs.statsd]]
+        max_tcp_connections = 250
+        tcp_keep_alive = false
+        service_address = ":8125"
+        delete_gauges = true
+        delete_counters = true
+        delete_sets = true
+        delete_timings = true
+        metric_separator = "."
+        allowed_pending_messages = 10000
+        percentile_limit = 1000
+        parse_data_dog_tags = true 
+        read_buffer_size = 65535
+
+#-------------------TELEGRAF-DEPLOYMENT-------------------------------------
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    namespace: monitoring
+    name: telegraf
+    labels: 
+      app: telegraf
+  spec:
+    selector:
+      matchLabels:
+        app: telegraf
+    minReadySeconds: 5
+    template:
+      metadata:
+        labels:
+          app: telegraf
+      spec:
+        containers:
+          - image: telegraf:1.10.0
+            name: telegraf
+            envFrom:
+              - secretRef:
+                  name: telegraf-secrets
+            volumeMounts:
+              - name: telegraf-config-volume
+                mountPath: /etc/telegraf/telegraf.conf
+                subPath: telegraf.conf
+                readOnly: true
+        volumes:
+          - name: telegraf-config-volume
+            configMap:
+              name: telegraf-config
+#---------------------------------SERVICE-TELEGRAF-----------------------------------
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: telegraf
+    namespace: monitoring
+  spec:
+    type: NodePort
+    selector:
+      app: telegraf
+    ports:
+      - name: "8125"
+        protocol: UDP
+        port: 8125
+        targetPort: 8125
+#---------------------------------GRAFANA-SECRET---------------------------------------
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: grafana-creds
+    namespace: monitoring
+  type: Opaque
+  stringData:
+    GF_SECURITY_ADMIN_USER: admin
+    GF_SECURITY_ADMIN_PASSWORD: admin1234
+
+#-----------------------------GRAFANA-DEPLOYMENT---------------------------------------
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    namespace: monitoring
+    annotations:
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: grafana
+    name: grafana
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: grafana
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: grafana
+      spec:
+        containers:
+        - envFrom:
+          - secretRef:
+              name: grafana-creds
+          image: grafana/grafana:6.0.0
+          imagePullPolicy: IfNotPresent
+          name: grafana
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+
+#--------------------------------GRAFANA-SERVICE----------------------------
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: grafana
+    namespace: monitoring
+  spec:
+    type: ClusterIP
+    selector:
+      app: grafana
+    ports:
+      - name: "3000"
+        protocol: TCP
+        port: 3000
+        targetPort: 3000
