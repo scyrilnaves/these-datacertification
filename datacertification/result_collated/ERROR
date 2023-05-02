@@ -1,0 +1,24 @@
+ 
+QBFT: TPS 500 2000 xs stuck::: 5 validators
+
+Invalid Proposal Payload: Latest Prepared Metadata blockhash does not align with proposed block
+2021-08-22 16:38:34.102+00:00 | pool-8-thread-1 | INFO | ProposalValidator | Invalid Proposal Payload: Latest Prepared Metadata blockhash does not align with proposed block
+2021-08-22 16:39:09.693+00:00 | pool-8-thread-1 | INFO | ProposalValidator | Invalid Proposal Payload: Latest Prepared Metadata blockhash does not align with proposed block
+2021-08-22 16:40:13.806+00:00 | pool-8-thread-1 | INFO | ProposalValidator | Invalid Proposal Payload: Latest Prepared Metadata blockhash does not align with proposed block 
+
+https://besu.hyperledger.org/en/stable/Concepts/Consensus-Protocols/Comparing-PoA/
+
+https://besu.hyperledger.org/en/stable/HowTo/Configure/Consensus-Protocols/Clique/
+
+https://www.youtube.com/watch?v=YmTUP_dWfME
+
+https://consensys.net/blog/quorum/consensys-quorum-21-7-0-product-update-london-hard-fork-qbft-and-more/
+
+https://consensys.net/blog/quorum/hyperledger-besu-understanding-proof-of-authority-via-clique-and-ibft-2-0-private-networks-part-1/
+
+https://consensys.net/blog/news/another-day-another-consensus-algorithm-why-ibft-2-0/ 
+
+https://github.com/ethereum/EIPs/issues/650
+
+https://www.polarsparc.com/xhtml/Clique.html
+

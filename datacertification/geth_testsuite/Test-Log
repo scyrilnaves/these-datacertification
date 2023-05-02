@@ -1,0 +1,39 @@
+TotalValidblocks,Leastblocksize,MaxBlocksize,Leastblockgaslimit,Maxblockgaslimit,Leastblockgasused,Maxblockgasused,Leastblocktransactions,Maxblocktransactions,blocktimeperiod,totaltxs
+,finaltps,firedtps,totalfiredtime,totalblocktimeinterval,txgasused,TotalUncleblocks,Iteration,Latency
+546,4039,8149,8000000,8000000,1372900,3020380,25,55,2,30000,27.17391304347826,1428.5714285714287,21,1104,54916,6.0,1,0.6399333333333334
+
+03/08
+Validators = 25
+txs = 30000
+Accident Tx Gas = 54916 
+Ideal Gas Limit: 329496000 ~ 339496000
+                 357500000
+Accident Balance = 113480
+Single Client:
+Threads | Input TPS | Actual TPS
+(Probably due to message communication complexity)
+1000 | 1428 | 27
+1500 | 1428 | 27
+200  | 1578 | 27
+100  | 1578 | 27
+20   | 1363 | 27  
+
+Double Client:
+Better a sigle client as lot of synhronisation and other issues
+
+1 Factory
+2000 Cars
+60000 Accidents
+
+100 threaded client
+Gas Limit fixed at 357500000 (55000 * 6500)
+Then finaltps: 174 TPS
+TotalValidblocks,Leastblocksize,MaxBlocksize,Leastblockgaslimit,Maxblockgaslimit,Leastblockgasused,Maxblockgasused,
+301,17873,28150,15864968,15998757,6919416,11038116,
+Leastblocktransactions,Maxblocktransactions,blocktimeperiod,totaltxs
+126,201,2,60000,
+finaltps,firedtps,totalfiredtime,totalblocktimeinterval,txgasused,TotalUncleblocks,Iteration,Latency
+99.33774834437087,1153.8461538461538,52,604,54916,1.0,1,0.0216166666666666
+
+Gas Target Problem Fixed. To have a uniform TPS
+ 

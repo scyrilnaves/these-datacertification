@@ -1,0 +1,9 @@
+wheel 
+web3 
+pandas 
+websocket_client 
+typing-extensions 
+pymongo 
+py-solc 
+requests
+eth-testrpc

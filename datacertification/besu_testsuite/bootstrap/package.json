@@ -1,0 +1,16 @@
+{
+  "name": "genkey",
+  "version": "1.0.0",
+  "description": "Utility to Generate Keys in an ethereum network",
+  "main": "genkeys.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cyril",
+  "license": "ISC",
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "web3": "^1.4.0",
+    "web3-eth-accounts": "^1.4.0"
+  }
+}
