@@ -1,0 +1,331 @@
+
+require('dotenv').config();
+var fs = require('fs');
+
+var ethcommon = require('../ethereum/commonservice');
+
+const Web3 = require('web3');
+
+const csvwriterlibrary = require('csv-writer').createObjectCsvWriter;
+
+var provider_url = process.env.ethereum_host;
+var provider_event_url=process.env.ethereum_wshost;
+var transactioncontractaddress = process.env.ethereum_transactioncontract;
+
+var transactionabi = "blockchainapi/ethereum/abi/transaction.json";
+var transactionabiparsed = JSON.parse(fs.readFileSync(transactionabi));
+
+
+var listfinaltimer=process.env.test_timer_admin_ether_monitorservice_listfinal;
+var lookconfirmationtimer=process.env.test_timer_admin_ether_monitorservice_lookconfirmation;
+var getalliedtimer=process.env.test_timer_admin_ether_monitorservice_getallied;
+
+
+//////////////////Timer Details:
+//Timer Interval //3600000 milliseconds = 60 minutes
+
+//For Test we Keep 2 minutes
+//120000
+
+setInterval(listenfinaliserevents, listfinaltimer);
+setInterval(lookforConfirmation, lookconfirmationtimer);
+setInterval(getAlliedDetails, getalliedtimer);
+
+
+function init() {
+  let eventProvider = new Web3.providers.WebsocketProvider(provider_event_url);
+  web3 = new Web3(eventProvider);
+  transactioncontract = new web3.eth.Contract(transactionabiparsed,transactioncontractaddress);
+};
+
+var createevents=[];
+
+var createeventcounter=0;
+
+//Time array for Entire lifecycle of event
+var completedevents=[];
+
+var completeeventcounter=0;
+
+const entirecsvwriter = csvwriterlibrary({
+    path:"assetentire.csv",
+    header:[
+        {id:'Time',title:'Time'}
+    ]
+});
+
+var transactionarray=[];
+
+var transactionarraycounter=0;
+
+//Time Array in Ethereum Network
+var completedetherevents=[];
+
+var completedethereventcounter=0;
+
+const entireethercsvwriter = csvwriterlibrary({
+    path:"assetetherentire.csv",
+    header:[
+        {id:'Time',title:'Time'}
+    ]
+});
+
+//Other Details Array
+var AlliedDetailsArray  =[];
+
+var AliedDetailsArrayCounter=0;
+
+const etherdetailscsvwriter = csvwriterlibrary({
+    path:"etherdetails.csv",
+    header:[
+        {id:'Peercount',title:'Peercount'},
+        {id:'HashRate',title:'HashRate'},
+        {id:'GasPrice',title:'GasPrice'},
+        {id:'BlockNo',title:'BlockNo'},
+        {id:'PendingTxPool',title:'PendingTxPool'},
+        {id:'QueuedTxPool',title:'QueuedTxPool'},
+        {id:'MemStat',title:'MemStat'},
+        {id:'Time',title:'Time'}
+    ]
+});
+
+/**
+ * Get Events when transaction are created
+ */
+function listencreaterevents(){
+    init();
+    
+    transactioncontract.events.CreateTransactionEvent(function(err,result){
+        if(err){
+            return "Error Occured";
+        }
+        console.log("Creation"+result );
+        if(result.args.transactiontype==14){
+            var transactiondetail=[];
+            transactiondetail[0]=result.args.eventAddress;
+            transactiondetails[1]=(new Date()).getTime();
+            transactiondetails[2]=false;
+            createevents[createeventcounter]=transactiondetail;
+            createeventcounter = ++createeventcounter;
+        }
+    })
+
+}
+
+/**
+ * Get events when transction are finalised and calculate the difference between creation and finalisation
+ */
+function listenfinaliserevents(){
+    init();
+    transactioncontract.events.FinaliseTransactionEvent(function(err,result){
+        if(err){
+            return "Error Occured";
+        }
+        if(result.args.transactiontype==14){
+            for(var i=0;i<Object.keys(createevents).length;i++){
+                createevents[i] = createevents[i];
+                if(createevents[i][2]==false && createevents[i][0]==result.args.eventAddress){
+                    createevents[i][2]=true;
+                    var difference = Math.abs(createevents[i][1] - (new Date()).getTime());
+                    completedevents[completeeventcounter] = difference;
+                    completeeventcounter = ++completeeventcounter;
+                }
+            }
+            
+        }
+    })
+}
+
+/**
+ * Get events when transction are finalised and calculate the difference between creation and finalisation
+ */
+/* function listenfinaliserevents(callback){
+    transactioncontract.FinaliseTransactionEvent(function(err,result){
+        if(err){
+            return "Error Occured";
+        }
+        return callback(result);
+    })
+}
+ */
+/**
+ * Store all the transaction when they are called from User Service For Asset Transfer passing the transaction hash
+ * @param {*} txhash 
+ */
+function storeAssetTransferTransaction(txhash){
+    var currenttransaction=[];
+    currenttransaction[0]=txhash;
+    currenttransaction[1]=(new Date()).getTime();
+    currenttransaction[2]=false;
+    transactionarray[transactionarraycounter]=currenttransaction;
+    transactionarraycounter = ++transactionarraycounter;
+    
+}
+
+/**
+ * Poll with the Transaction and Look if they are confirmed
+ */
+function lookforConfirmation(){
+    console.log("called");
+    print();
+    for(var i=0;i<Object.keys(transactionarray).length;i++){
+        transactionarray[i]=transactionarray[i];
+        console.log("wechck"+transactionarray[i]);
+        if(transactionarray[i][2]==false){
+            //transactionarray[i][0]=transactionarray[i][0];
+        ethcommon.getTransactionReceipt(transactionarray[i][0],i,function(response,retindex){
+            if(response !=null || response!= undefined){
+                transactionarray[retindex]=transactionarray[retindex];
+                console.log("checkundef"+transactionarray[retindex])
+                if(response.blockNumber!=0){
+                    transactionarray[retindex][2]=true;
+                    var difference = Math.abs(transactionarray[retindex][1] - (new Date()).getTime());
+                    completedetherevents[completedethereventcounter] = difference;
+                    completedethereventcounter = ++completedethereventcounter;
+                }
+            }
+        })
+        }
+    }
+}
+
+function print(){
+
+    console.log(createevents);
+
+    console.log(completedevents);
+
+    console.log(transactionarray);
+
+    console.log(completedetherevents);
+
+    console.log(AlliedDetailsArray);
+
+
+}
+
+/**
+ * Get all the Details for the Network
+ */
+function getAlliedDetails(){
+
+var currentdetail=[];
+ethcommon.getPeerCount(function(response){
+    currentdetail[0]= response;
+});
+ethcommon.getHashRate(function(response){
+    currentdetail[1]= response;
+});
+
+ethcommon.getGasPrice(function(response){
+    currentdetail[2]= response;
+});
+
+ethcommon.getCurrentBlockNo(function(response){
+    currentdetail[3]= response;
+});
+
+ethcommon.getTxPoolNo(function(response){
+    currentdetail[4]= response[0];
+});
+
+ethcommon.getTxPoolNo(function(response){
+    currentdetail[5]= response[1];
+});
+
+ethcommon.getMemStats(function(response){
+    currentdetail[6]= response;
+});
+
+    currentdetail[7]= (new Date()).getTime();
+    AlliedDetailsArray[AliedDetailsArrayCounter] = currentdetail;
+    AliedDetailsArrayCounter =++AliedDetailsArrayCounter;
+}
+
+/**
+ * Print All Logs into CSV
+ */
+function writeAllDetails(callback){
+    completedeventwritearray=[];
+    completedeventetherwritearray=[];
+    completedDetailsArray=[];
+    //Write Asset Transfer confirmation
+    for(var i=0;i<Object.keys(completedevents).length;i++){
+       var completedeventwrite= {
+        'Time':completedevents[i]
+        }
+        completedeventwritearray[i]=completedeventwrite;
+    }
+    //Write Transaction confirmation
+    for(var j=0;j<Object.keys(completedetherevents).length;j++){
+        var completedethereventwrite= {
+         'Time':completedetherevents[j]
+         }
+         completedeventetherwritearray[j]=completedethereventwrite;
+     }
+
+     for(var k=0;k<Object.keys(AlliedDetailsArray).length;k++){
+        var AlliedDetailwrite= {
+            'Peercount':AlliedDetailsArray[k][0],
+            'HashRate':AlliedDetailsArray[k][1],
+            'GasPrice':AlliedDetailsArray[k][2],
+            'BlockNo':AlliedDetailsArray[k][3],
+            'PendingTxPool':AlliedDetailsArray[k][4],
+            'QueuedTxPool':AlliedDetailsArray[k][5],
+            'MemStat':AlliedDetailsArray[k][6],
+            'Time':AlliedDetailsArray[k][7]
+         }
+         completedDetailsArray[k]=AlliedDetailwrite;
+     }
+
+     entirecsvwriter.writeRecords(completedeventwritearray).then(()=>console.log("First written"));
+
+     entireethercsvwriter.writeRecords(completedeventetherwritearray).then(()=>console.log("Second written"));
+
+     etherdetailscsvwriter.writeRecords(completedDetailsArray).then(()=>console.log("Third written"));
+     return callback("Monitor Result Written Successfully");
+
+
+}
+
+/**
+ * Store all the transaction when they are called from Asset Service For Asset Transfer passing the transaction hash
+ * @param {*} txhash 
+ */
+function getRecentClearedTransaction(callback){
+    var clearedtrasnfers =[];
+    var clearedtrasnferscounter =0;
+    if(transactionarray.length>5){
+    for(var i=(Object.keys(transactionarray).length-1);i>=(Object.keys(transactionarray).length-5);i--){
+        console.log(transactionarray);
+        var currenttransfer=[];
+        transactionarray[i]=transactionarray[i];
+        if(transactionarray[i]!=undefined && transactionarray[i][2]==true){
+            currenttransfer[0]=transactionarray[i][0];
+            currenttransfer[1]=transactionarray[i][1];
+            clearedtrasnfers[clearedtrasnferscounter] = currenttransfer;
+            clearedtrasnferscounter =++clearedtrasnferscounter;
+
+        }
+    }
+    return callback(clearedtrasnfers);
+}
+else{
+    return callback("Not enough transactions");
+}
+}
+
+
+let monitorserviceexports = {
+    listencreaterevents:listencreaterevents,
+    listenfinaliserevents:listenfinaliserevents,
+    storeAssetTransferTransaction:storeAssetTransferTransaction,
+    lookforConfirmation:lookforConfirmation,
+    getAlliedDetails:getAlliedDetails,
+    writeAllDetails:writeAllDetails,
+    getRecentClearedTransaction:getRecentClearedTransaction
+
+
+};
+
+module.exports = monitorserviceexports;

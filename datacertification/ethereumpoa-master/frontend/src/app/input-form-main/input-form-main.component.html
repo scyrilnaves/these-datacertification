@@ -1,0 +1,25 @@
+
+<legend>Enter Trip Information To validate and Store Kilometrage in Blockchain</legend>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group" [ngClass]="{'has-error':invalidVIN()}">
+    <label for="VIN" class="control-label">VIN</label>
+    <input type="text" formControlName="VIN" class ="form-control" id="VIN" name="VIN" placeholder="VIB2233">
+    <p *ngIf="invalidVIN()" id="VIN_error" class="help-block">Invalid VIN</p>
+  </div>
+  <div class="form-group" [ngClass]="{'has-error':invalidstartplace()}">
+<label for="start_place" class="control-label">Start Place</label>
+<input type="text" formControlName="start_place" class ="form-control" id="start_place" name="start_place" placeholder="garbejare">
+<p *ngIf="invalidstartplace()" id="start_place_error" class="help-block">Invalid Start Place</p>
+</div>
+<div class ="form-group has-error" [ngClass]="{'has-error':invaliddestinationplace()}">
+  <label for="destination_place" class ="control-label">Destination Place</label>
+  <input type="text" formControlName="destination_place" class ="form-control" id="destination_place" name="destination_place" placeholder="nice">
+  <p *ngIf="invaliddestinationplace()" id="destination_place_error" class="help-block"> Invalid Destination Place</p>
+</div>
+
+<div class="form-group has-error">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>

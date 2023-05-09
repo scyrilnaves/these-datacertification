@@ -1,0 +1,26 @@
+
+To create virtual environment:
+
+python3 -m venv poaprocess
+
+To activate virtual environment:
+
+source poaprocess/bin/activate
+
+Install following dependencies:
+
+pip install pandas
+
+In case of error in python
+#sudo apt-get install liblzma-dev
+
+#asyncio version
+pip install websockets
+
+# Change ulimit for a terminal or more no of open files problem
+
+ulimit -n {no of iterations/simultaneous requests}
+
+
+Problem References:
+https://stackoverflow.com/questions/18647230/cant-create-new-threads-in-python

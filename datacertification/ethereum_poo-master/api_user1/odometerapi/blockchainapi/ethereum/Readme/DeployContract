@@ -1,0 +1,31 @@
+We use REMIX IDE in non-https mode:
+
+http://remix.ethereum.org/#optimize=false&version=soljson-v0.5.1+commit.c8a2cb62.js
+
+1) Select Web3Provider
+
+2) Specify Nodeaddress with RPC Port Eg: http://10.214.221.229:2000
+
+3) Then Compile and deploy in order:
+
+a) Wallet.sol
+
+Constructor args: Leaders: ==> ["address1","address2"]
+
+["0xaa43515b48c36a51f158cc8b941900b8aa6fb885","0x22a8c699ff1081c31e32ef0ec9266694e415fcd5","0x9d8a6e7068faf675d933a872195b4ab44b3a1793"]
+
+b) Transaction.sol 
+
+Constructor Args: Wallet Contract Address
+
+c) Main.sol
+
+Constrcutor Args: Wallet & TRansaction Contract Address
+
+4) Specify the Address of Main & Transaction contract Address in Wallet for sEcurity purpose
+
+Also the address of Main in Transaction contract to limit the caller sEcurity
+
+5) All is done!!
+
+If Contract Changes ABI has to be copied and replaced in the code

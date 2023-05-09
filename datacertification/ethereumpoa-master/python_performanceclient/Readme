@@ -1,0 +1,88 @@
+#Built in python 3.7
+
+To create virtual environment:
+
+python3 -m venv poa
+
+To activate virtual environment:
+
+source poa/bin/activate
+
+Install following dependencies:
+
+pip install web3
+
+pip install pandas
+
+#synchronous websocket client
+pip install websocket_client
+
+#asyncio version
+pip install websockets
+
+# Change ulimit for a terminal or more no of open files problem
+
+ulimit -n {no of iterations/simultaneous requests}
+
+
+Problem References:
+https://stackoverflow.com/questions/18647230/cant-create-new-threads-in-python
+
+
+# In case of proxy error / python3.6 problems
+
+python3 -m venv poa
+source poa/bin/activate
+export https_proxy="http://az02713:Cyril991@cosmos-vip.intra.renault.fr:3128"
+export https_proxy="http://10.214.226.142:3130" 
+sudo apt-get install python3-dev
+pip install wheel
+pip install web3
+pip install pandas
+pip install websocket_client
+pip install typing-extensions
+pip install gql
+
+
+
+
+----------------------------------
+sudo apt-get install python3.7
+  516  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+  517  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
+  518  sudo update-alternatives --config python3
+  519  python3 -V
+  520  python3 monitorservice_direct_async_queue_batches_ws_test_final.py
+  521  exit
+  522  ls
+  523  cd Documents/
+  524  ls
+  525  cd python_performanceclient/
+  526  ls
+  527  cd direct/
+  528  ls
+  529  cd websocket/
+  530  ls
+  531  rm -rf poa
+  532  python3 -V
+  533  python3 -m venv poa
+  534*
+  535  python3 -m venv poa
+  536  ls
+  537  rm -rf poa
+  538  ls
+  539  python3 -m venv poa
+  540  sudo apt-get install python3.7-venv
+  541  ls
+  542  rm -rf poa/
+  543  python3.7 -m venv poa
+  544  source poa/bin/activate
+  545  pip install web3
+  546  export https_proxy="http://az02713:Naves266@cosmos-vip.intra.renault.fr:3128"
+  547  pip install web3
+  548  sudo apt-get install build-essential
+  549  sudo apt-get install python3.7-dev
+  550  pip install web3
+  551  pip install wheel
+
+

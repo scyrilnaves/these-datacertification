@@ -1,0 +1,85 @@
+
+GETH 1.9.0 stable version better
+Instruction in General To SetUp the Ethereum Network:
+
+--rpcaddr='0.0.0.0'  ( currently allows all the ip's) not good ??
+
+NetworkID and Chain ID should match always!!
+
+Main Node:
+===============
+Steps: Cretae the Ethereum Addresss and Deposit funds in all the Nodes to make transaction
+
+sudo chown -R lab:lab opt
+cd opt
+mkdir ethereumdata
+cd ethereumdata
+pwd
+geth --datadir=/home/lab/opt/ethereumdata account new
+vi genesis.json
+geth --datadir=/home/lab/opt/ethereumdata init genesis.json
+===============================================================================
+
+{0x4f1fd96b191b12c4af535be760b1a26e78a06e3a}                       (10.214.221.229) Node1
+
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0xaa43515b48c36a51f158cc8b941900b8aa6fb885'  --allow-insecure-unlock --password 'pass.txt' --mine --miner.threads 2 --miner.gasprice "0" &
+
+
+------------------------------======================BOOTNODE FOR DISCOVERY==================================================
+{837c6e669ceabc7dd7efeeae83cfd4c8a2cc1de592ffb6d4bdbeec021586e523}   ( 10.214.222.244 ) Boot Node
+
+bootnode --nodekeyhex 837c6e669ceabc7dd7efeeae83cfd4c8a2cc1de592ffb6d4bdbeec021586e523 -writeaddress  /// To Get ENDODE ADDRESS
+
+-bootnodes 'enode://780636d36bd6d57b73cb8b0b5c659079df19e8195b889a5b2258dcdc1ada0ffaf24b82446279603b9d1fd65852375ef102fc2200e51bcd88c498e21bd3e6b291@10.214.222.244:50006'
+
+bootnode --nodekey=boot.key -verbosity 9 -addr :50006
+
+-----------------------------------------------===========================================================================================
+
+0x8db6d362a56152f56ff120951267bf1f8aa12b77                    (10.214.222.202) Node 2   
+
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x22a8c699ff1081c31e32ef0ec9266694e415fcd5' --allow-insecure-unlock --password 'pass.txt' --mine --miner.threads 2 --miner.gasprice "0" &
+
+
+-----------------------------------------------------------------==================================================================================
+
+----------------------
+local:
+
+0x4b47d66a049298a73fb2b9cb78d6ca75345c1789
+
+nohup ./../../soft/gethlatest/geth --datadir=/home/renault/Documents/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' --mine --miner.threads 1 --miner.gasprice "0" &
+
+*******************************************************ENSURE SUFFICEENT FUNDS IN ALL THE NODES*****************************************************************************
+
+sudo chown -R lab:lab opt
+cd opt
+mkdir ethereumdata
+cd ethereumdata
+pwd
+geth --datadir=/home/lab/opt/ethereumdata account new
+vi genesis.json
+geth --datadir=/home/lab/opt/ethereumdata init genesis.json
+
+
+
+geth attach ipc:geth.ipc
+
+
+admin.peers
+===============================================================
+
+https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8 // BootNode Example
+
+https://github.com/ethereum/go-ethereum/wiki/Setting-up-private-network-or-local-cluster //Bootnode example
+ 
+
+https://github.com/alastria/alastria-node/issues/278              //Importance of Byzantine
+
+https://ethereum.stackexchange.com/questions/2376/what-does-each-genesis-json-parameter-mean  //Genesis.json
+
+===================================================================================
+
+!! LOOK OUT FOR GENESIS.JSON ATTACHED

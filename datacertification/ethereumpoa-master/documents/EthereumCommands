@@ -1,0 +1,62 @@
+
+BOOTNODE: 10.214.222.244
+================================================
+ETHEREUM ADMIN1 :
+10.214.221.229                  0xaa43515b48c36a51f158cc8b941900b8aa6fb885
+
+10.214.222.202                   Middleware
+
+--------------------------------------------
+ETHEREUM ADMIN2 :
+10.214.220.100                  0x22a8c699ff1081c31e32ef0ec9266694e415fcd5
+
+10.214.220.161                  Middleware
+
+---------------------------------------------
+
+ETHERUEM  USER1:
+
+ 10.214.220.251                  0x420a6e75d4c68e5123de6c998a753e66f81db3ed
+ 
+geth --datadir=/home/lab/opt/blkchain/ether init genesis.json
+
+./../../soft/gethlatest/geth --datadir=/home/renault/Documents/blkchain/ether init genesis.json
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://116c9179d1fb7f52273c100607617f1389b2a2e6e7cf81ad84d1699d550974d333f7c59d854fd195d1fc65d748c80cb8cb8032e4b27bdbf0bc7cb27a6b312f67@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0xaa43515b48c36a51f158cc8b941900b8aa6fb885'  --allow-insecure-unlock --password 'pass.txt' --syncmode "light" --lightkdf --mine --miner.threads 2 --miner.gasprice "0" --metrics --metrics.influxdb --metrics.influxdb.endpoint "http://10.214.222.244:8086" --metrics.influxdb.database ethereum --metrics.influxdb.tags "host=admin1" &
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://116c9179d1fb7f52273c100607617f1389b2a2e6e7cf81ad84d1699d550974d333f7c59d854fd195d1fc65d748c80cb8cb8032e4b27bdbf0bc7cb27a6b312f67@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0xaa43515b48c36a51f158cc8b941900b8aa6fb885'  --allow-insecure-unlock --password 'pass.txt' --mine --miner.threads 2 --miner.gasprice "0" &
+
+--------------------------------------------------------
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x22a8c699ff1081c31e32ef0ec9266694e415fcd5' --allow-insecure-unlock --password 'pass.txt' --mine --miner.threads 2 --miner.gasprice "0" --metrics --metrics.influxdb --metrics.influxdb.endpoint "http://10.214.222.244:8086" --metrics.influxdb.database ethereum --metrics.influxdb.tags "host=admin2" &
+
+nohup geth --datadir=/home/lab/opt/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x22a8c699ff1081c31e32ef0ec9266694e415fcd5' --allow-insecure-unlock --password 'pass.txt' --mine --miner.threads 2 --miner.gasprice "0" &
+
+-------------------------------------------------------
+geth_bak
+
+nohup ./../../soft/gethlatest/geth --datadir=/home/renault/Documents/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' --mine --miner.threads 1 --miner.gasprice "0" --metrics --metrics.influxdb --metrics.influxdb.endpoint "http://10.214.222.244:8086" --metrics.influxdb.database ethereum --metrics.influxdb.tags "host=user1" &
+
+nohup ./../../soft/gethlatest/geth --datadir=/home/renault/Documents/blkchain/ether --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes 'enode://afa26826ebd14f9ef631085aa85b3f927ade7f58d7fea246834cc9e9e8955fede13341596d31d33e5dce11f4a66e857a5dbb7f1e086d3107942787fe6d159bbc@10.214.222.244:50006' --rpccorsdomain "*" --rpcaddr "0.0.0.0" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' --mine --miner.threads 1 --miner.gasprice "0" &
+
+----------------------------------------------------------
+LEADERS:
+
+["0xaa43515b48c36a51f158cc8b941900b8aa6fb885","0x22a8c699ff1081c31e32ef0ec9266694e415fcd5"]
+
+1564067464088
+1564067479000
+
+eth.getTransaction('0x1095a60292e979a4e7fd99f842e7b68203e6334c5b9d5788f18b806caa3bf740')
+
+
+eth.getBlock('0x30bd221238c640d0844de54840bced84b3a3c2a086187992c65efa46b8bc6a3b')
+
+
+wallet address: 0x06d389b5e05d3bf7cd223dab7718193324736587
+
+ng serve --proxy-config proxy.conf.json --host 0.0.0.0
+
+Transaction signing :  https://www.edureka.co/community/22190/call-contract-methods-with-web3-from-newly-created-account
+
+GETH 1.9.0 stable version better

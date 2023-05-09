@@ -1,0 +1,100 @@
+//Timer Interval //3600000 milliseconds = 60 minutes
+
+//setTimeout(finaliseAdmin, 3600000);
+
+For Callback:
+
+setTimeout(function(){
+    approveOutStandingAdminPermissions(function(response){
+        console.log(response);
+    })
+}, 120000);
+
+
+Timer Functions:
+
+===================================================================================
+
+
+Class                                                                                                          Method
+==================================================================================== 
+
+                                                                                       
+																					   
+
+
+
+
+ETHEREUM:
+*********************
+
+Adminservice.js                                                          jobAddSignaturetoPendingTransactions
+
+
+AssetTransferInterface.js                                            ValidateandProcessDataforTest  ( For Load Testing)
+
+MonitorService.js                                                          listenfinaliserevents ( For Load Testing)
+                                                                                 lookforConfirmation ( For Load Testing)
+                                                                                 getAlliedDetails ( For Load Testing)
+																					
+MULTICHAIN:
+*********************
+
+AdminService.js                                                       approveOutStandingAdminPermissions
+                                                                               afterAdminGrantTasksforKnownNodes
+																			   
+																			   finaliseMyConnectApprovals
+																			   getConnectApprovalsPendingandApprove
+																			   
+																			   createAssetRequestforPendingRequests
+																			   pollAssetRequestatNetworkandApprove
+																			   finaliseAssetRequest
+																			   
+AssetTransferInterface.js                                          ValidateandProcessDataforTest(For Load Testing)
+
+
+MonitorService.js                                                        clearMultichainAssetTransferTransaction ( For Load Testing)
+                                      					                         getAlliedDetails ( For Load Testing)
+
+                                                                               
+
+																			   
+																			   
+																			   
+======================================================================================================
+
+Inside API Direct:
+
+ETHEREUM:
+******************************
+
+Adminservice.js                                                         jobAddSignaturetoPendingTransactions      ( ALREADY COVERED BEFORE)
+
+
+
+
+
+MULTICHAIN:
+******************************	
+
+Admin.js                                                                     pollOutstandingTransaction                  	(ALREADY COVERED BEFORE)
+                                                                                  finaliseAdmin                                       ( ALREADY COVERED BEFORE)
+																				   
+Asset.js                                                                     pollandCreateAssetRequests                 ( ALREADY COVERED BEFORE)
+                                                                                 pollforAssetTransferRequesttoApprove   ( ALREADY COVERED BEFORE)
+																				 finalise                                                  ( ALREADY COVERED BEFORE)
+																				 
+Connect.js                                                                  pollOutstandingTransaction                  ( ALREADY COVERED BEFORE)
+                                                                                 autoApprovePermission                        ( ALREADY COVERED BEFORE)
+                                                                                  																		   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   
+																			   

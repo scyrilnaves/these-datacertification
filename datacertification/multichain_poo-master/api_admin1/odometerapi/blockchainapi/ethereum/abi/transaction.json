@@ -1,0 +1,647 @@
+[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "display",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "maincontractaddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "From",
+				"type": "address"
+			},
+			{
+				"name": "Receiver",
+				"type": "address"
+			},
+			{
+				"name": "transactionType",
+				"type": "uint8"
+			},
+			{
+				"name": "newConsensusValue",
+				"type": "uint256"
+			},
+			{
+				"name": "transactionmetadata",
+				"type": "string"
+			},
+			{
+				"name": "balance",
+				"type": "uint256"
+			}
+		],
+		"name": "createTransaction",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			}
+		],
+		"name": "getPendingTransactionDetails",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "TransactionId",
+						"type": "uint256"
+					},
+					{
+						"name": "From",
+						"type": "address"
+					},
+					{
+						"name": "Receiver",
+						"type": "address"
+					},
+					{
+						"name": "typeOfTransaction",
+						"type": "uint8"
+					},
+					{
+						"name": "consensusValue",
+						"type": "uint256"
+					},
+					{
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"name": "signatureaddresses",
+						"type": "address[]"
+					},
+					{
+						"name": "pendingSignatures",
+						"type": "uint16"
+					},
+					{
+						"name": "totalSignatures",
+						"type": "uint16"
+					},
+					{
+						"name": "isApproved",
+						"type": "bool"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getDeleteTransactionConsensus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "pendingTransactions",
+		"outputs": [
+			{
+				"name": "TransactionId",
+				"type": "uint256"
+			},
+			{
+				"name": "From",
+				"type": "address"
+			},
+			{
+				"name": "Receiver",
+				"type": "address"
+			},
+			{
+				"name": "typeOfTransaction",
+				"type": "uint8"
+			},
+			{
+				"name": "consensusValue",
+				"type": "uint256"
+			},
+			{
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"name": "balance",
+				"type": "uint256"
+			},
+			{
+				"name": "pendingSignatures",
+				"type": "uint16"
+			},
+			{
+				"name": "totalSignatures",
+				"type": "uint16"
+			},
+			{
+				"name": "isApproved",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			}
+		],
+		"name": "addSignatureByPermissionedAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getOverallConsensus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "TransactionAddressArray",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getMainContractAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			},
+			{
+				"name": "TransactionId",
+				"type": "uint256"
+			}
+		],
+		"name": "getPendingSignatures",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "TransactionId",
+				"type": "uint256"
+			}
+		],
+		"name": "addSignatureByTransactionId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			}
+		],
+		"name": "removeSignatureByPermissionedAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			},
+			{
+				"name": "TransactionId",
+				"type": "uint256"
+			}
+		],
+		"name": "addSignatureByPermissionedAddressandTransactionId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "PermissionedAdress",
+				"type": "address"
+			},
+			{
+				"name": "TransactionId",
+				"type": "uint256"
+			}
+		],
+		"name": "getTransaction",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "TransactionId",
+						"type": "uint256"
+					},
+					{
+						"name": "From",
+						"type": "address"
+					},
+					{
+						"name": "Receiver",
+						"type": "address"
+					},
+					{
+						"name": "typeOfTransaction",
+						"type": "uint8"
+					},
+					{
+						"name": "consensusValue",
+						"type": "uint256"
+					},
+					{
+						"name": "metadata",
+						"type": "string"
+					},
+					{
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"name": "signatureaddresses",
+						"type": "address[]"
+					},
+					{
+						"name": "pendingSignatures",
+						"type": "uint16"
+					},
+					{
+						"name": "totalSignatures",
+						"type": "uint16"
+					},
+					{
+						"name": "isApproved",
+						"type": "bool"
+					}
+				],
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCaller",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getFollowerRoleConsensus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getParticipantRoleConsensus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getPendingTransactions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getleaderRoleConsensus",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "walletInterfaceInstance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "addressmapping",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "mainContractAddress",
+				"type": "address"
+			}
+		],
+		"name": "setMainContractAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "transactionType",
+				"type": "uint8"
+			}
+		],
+		"name": "calculateSignatures",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint16"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "walletInterfaceaddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "eventAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "transactiontype",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"name": "consensusvalue",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "balance",
+				"type": "uint256"
+			}
+		],
+		"name": "FinaliseTransactionEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "eventAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "transactiontype",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"name": "consensusvalue",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "metadata",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "balance",
+				"type": "uint256"
+			}
+		],
+		"name": "CreateTransactionEvent",
+		"type": "event"
+	}
+]

@@ -1,0 +1,163 @@
+Docker Details:
+****************
+
+Ref: https://medium.com/@javahippie/building-a-local-ethereum-network-with-docker-and-geth-5b9326b85f37 
+
+REf: Internal https://confluence.dt.renault.com/pages/viewpage.action?spaceKey=IRN69529&title=Compiling+for+Ubuntu+inside+docker
+
+REf Internal: https://confluence.dt.renault.com/display/IRN69529/Configure+Renault+internet+proxy+on+ubuntu 
+
+*****************
+
+Admin1: 0x995453f12fB74910e6d90E4F2773187927A6a4D9
+
+0xc114d55f4472354556d710afe32e27910b431b2615f976036f776db56dd6df6e
+
+Admin2: 0x00552A5f2022418B3b0526013C5030730A6cBDbb
+
+0x314455a475b06145b674362d230fe5ad8bc3a23bf3b9fc2507cd264d7d6dfd56
+
+User1: 0xF844a4426b4772de22CFC94807E8A3d747274b8f
+
+0x4d2419d267b38e7181d1ceb89ccb8ca4e6fc1dde3d7bb7504ef8991f49de4c72
+
+User2: 0x3eB94d9b1A8c986a108FAd91eD5e145148e3C8eE
+
+0x364f2f3e6c24d91ac3ba65fa161ad3509dc4880e7d21ba81e7073c083fa5ad3d
+
+RaspberryPi:0x420a6e75d4c68e5123de6c998a753e66f81db3ed
+
+Command for Raspi:
+====================
+./../../soft/geth-current/geth --datadir=/home/renault/Documents/blkchain/ether init genesis.json
+
+********************CHANGE THE BOOTNODE URL *********************************************
+
+SYNCMODE FAST BETTER
+
+=====> nohup ./../../soft/geth-current/geth --datadir=/home/renault/Documents/blkchain/ether --nousb --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes "enode://cc6e2400ff91c102cce4100f6601266937bcbf6f688ad33e103694882b4533a0eb76ae7d6430e41925bb66548e23afa92045f0297c209ac2982dbe158abcac38@10.214.226.142:50006" --rpccorsdomain "*" --rpcaddr "0.0.0.0" --nat "extip:10.214.226.30" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' &
+
+# with metrics & light mode (mining not supported in light mode)
+nohup ./../../soft/geth-current/geth --datadir=/home/renault/Documents/blkchain/ether --nousb --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000 -bootnodesv4 "enode://771d5eab7ff58dc84f72ef6d28b21f400b7e6d9b46fb9904b39a09cee1b6b52bcc8b47ccab3a26a9b435bfa376295cba84231deeef1f5cfd5a03f08facd65d7a@10.214.226.142:50006"  -bootnodesv5 "enode://2b31b8122c43ba1acb105e9b99fe567cddd7a84b81db70a8630dcfefbda28b0aae5aab5c74290086b31ed8fd4243ba3601cbb2d979e539754cefec5472e68846@10.214.226.142:50020" --rpccorsdomain "*" --rpcaddr "0.0.0.0" --nat "extip:10.214.226.30" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' --etherbase "0x420a6e75d4c68e5123de6c998a753e66f81db3ed" --syncmode "light" --lightkdf --metrics --metrics.influxdb --metrics.influxdb.endpoint "http://10.214.226.143:8086" --metrics.influxdb.database ethereum --metrics.influxdb.tags "host=user3" &
+===========================
+
+nohup ./../../soft/geth-current/geth --datadir=/home/renault/Documents/blkchain/ether --nousb --networkid 26 --port 2001 --rpc --rpcapi web3,eth,personal,miner,net,txpool,admin,debug,miner --rpcport  2000  -bootnodes "enode://cc6e2400ff91c102cce4100f6601266937bcbf6f688ad33e103694882b4533a0eb76ae7d6430e41925bb66548e23afa92045f0297c209ac2982dbe158abcac38@10.214.226.142:50006" --rpccorsdomain "*" --rpcaddr "0.0.0.0" --nat "extip:10.214.226.30" --unlock '0x420a6e75d4c68e5123de6c998a753e66f81db3ed' --allow-insecure-unlock -password 'pass.txt' --mine --miner.threads 1 --etherbase "0x420a6e75d4c68e5123de6c998a753e66f81db3ed" --miner.gasprice "0" --syncmode "full" &
+
+---------------------------------------------------------------------------
+
+===================================================================================
+Use Web3 To extract the private key from the keystore
+=======================================================
+
+curl -LSs https://raw.githubusercontent.com/gochain/web3/master/install.sh | sh
+
+web3 account extract --keyfile /home/renault/Documents/dockerblockchaingeth/user2/keystore/* --password nissan
+
+
+faucet: 0x25C300c5AfC6B09dc5aDb88B3632426bf4ba2e43
+
+====================================================================================
+
+RemixIDe: 
+
+Installed at 10.214.226.142
+
+install node js and npm but  remix-ide requires in specific node version 10
+
+1)	sudo apt-get install nodejs
+2)	sudo apt-get install npm
+3)  sudo npm install -g n
+4)  sudo n 10
+
+^^^^^^^^^^^^
+Location of npmrc file can be found by npm config list
+proxy=http://pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+https-proxy=http:// pxxxx:password@cosmos-vip.intra.renault.fr:3128/
+http-proxy=http:// pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+http_proxy=http:// pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+https_proxy=http:// pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+HTTP_PROXY=http:// pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+HTTPS_PROXY=http:// pxxxx: password @cosmos-vip.intra.renault.fr:3128/
+
+pip install --proxy=http://az02713:Cyril991@cosmos-vip.intra.renault.fr:3128 pandas
+^^^^^^^^^^^^
+
+Then remix-ide install: npm install remix-ide -g --unsafe-perm=tre --allow-root
+
+In case of error:
+git config --global url."https://".insteadOf git://
+
+remix-ide ===> to start @ localhost:8080
+======================================================================================
+
+Docker General Commands:
+===========================
+
+docker container stop\rm $(docker container ls -a -q)
+
+docker image stop\rm $(docker image ls -a -q)
+
+
+1) Run docker boot first
+
+docker build -f docker_bootinit --no-cache --tag "renaultblockchain/renault-gethboot:latest" .
+
+2) Then start the other containers via compose:
+
+or comme ca: 
+docker container run -d --memory=4000m --memory-swap=5000m --cpus="2" --name myPython python:3-alpine sleep 3600
+
+docker-compose -f dockercompose.yml up -d ( background)
+
+3) docker stats --all
+
+4) docker exec -ti 8a2423a793a0 /bin/bash
+
+dockercompose
+
+1) docker-compose -f dockercomposemw.yml ps
+
+2) docker-compose -f dockercomposemw.yml rm
+
+3)docker-compose -f dockercomposemw.yml down
+
+
+docker container stop $(docker container ls -a -q)
+docker container rm $(docker container ls -a -q)
+docker image rm $(docker image ls -a -q)
+docker-compose -f dockercomposemw.yml ps
+docker-compose -f dockercomposemw.yml rm
+docker-compose -f dockercomposemw.yml down
+
+
+docker-compose -f dockercomposemw.yml up
+
+
+Stats:
+=======
+docker stats
+
+======================================================================
+
+Contract Content based Addresssing:
+===================================
+wallet - 0x47049a977274eaeddcf11bf7af62615421d55500
+
+transaction - 0x13e70a2522f0ebc8dff71013bc91a239250c1013
+
+main - 0xc93be610629da04fcf22f04480f4cb239ab1adc7
+
+
+Admin: 
+["0x995453f12fB74910e6d90E4F2773187927A6a4D9","0x00552A5f2022418B3b0526013C5030730A6cBDbb"]
+
+
+docker cp documents_mwadmin1api:/home/renault/ethereumpoa/api/*.csv $(pwd)
+
+
+-----------------------------
+
+docker light
+
+admin.addPeer("enode://c43f7483dbd77d7118952b5c4101541ada7207bbd6dc18757c00d3cd712ba61d0b067f0ccb37b02a01b7dde3900994a158fa133cecaeb6da2f9926d1a57c4add@10.214.226.142:2001")
+

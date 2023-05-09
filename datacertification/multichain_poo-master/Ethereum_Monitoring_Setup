@@ -1,0 +1,116 @@
+
+Ethereum Monitoring App: 
+
+Ref:  https://medium.com/@jake.henningsgaard/monitoring-the-ethereum-blockchain-24384064fad3
+
+Monitoring server:
+
+10.214.222.244
+
+1) ssh to the server
+
+2)  Two components needed:
+
+1) eth-netstats : This will be the front end UI which will interact with eth-net-intelligence-api
+   ****************
+   
+ 2) eth-net-intelligence-api: This is the backend service which will connect to the ethereum node to pull the data of each of them thorugh RPC Calls
+******************************
+
+3) mkdir ethereum_monitor
+
+4) cd ethereum_monitor
+
+5) mkdir eth-netstats
+
+6) cd eth-netstats
+
+7) git clone https://github.com/cubedro/eth-netstats.git
+
+7) Install npm and nodejs
+
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo npm install -g n
+sudo n stable
+
+8) cd into eth-netstats directory
+
+9) npm install
+
+10) sudo npm install -g grunt-cli
+
+11) grunt
+
+12) Get eth-net intelligence api
+      *******************************
+	  mkdir eth-net-intelligence-api
+	  cd eth-net-inteliigence-api
+	  
+13) git clone https://github.com/cubedro/eth-net-intelligence-api.git
+
+14) change the value in app.json to this:
+
+[
+  {
+    "name"              : "Admin1",
+    "script"            : "app.js",
+    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
+    "merge_logs"        : false,
+    "watch"             : false,
+    "max_restarts"      : 10,
+    "exec_interpreter"  : "node",
+    "exec_mode"         : "fork_mode",
+    "env":
+    {
+      "NODE_ENV"        : "production",
+      "RPC_HOST"        : "10.214.221.229",
+      "RPC_PORT"        : "2000",
+      "LISTENING_PORT"  : "2001",
+      "INSTANCE_NAME"   : "Admin1_Instance",
+      "CONTACT_DETAILS" : "",
+      "WS_SERVER"       : "http://localhost:3000",
+      "WS_SECRET"       : "pass",
+      "VERBOSITY"       : 2
+    }
+  }
+]
+
+
+15) Install pm2 ( process manager for node)
+sudo npm install pm2 -g
+
+npm install chalk
+npm install web3
+npm install async
+npm install lodash
+sudo npm install debounce
+sudo npm install primus
+sudo npm install primus-emit
+sudo npm install primus-spark-latency
+npm install ws --save
+npm start ( just to check)
+
+Replicate the same app.json for  multiple nodes as app1.json, app2.json
+
+16) pm2 start app.json app1.json app2.json
+
+17) http://10.214.222.244:3000/
+
+18) cd eth-netstats
+
+For Front-end to commuincate with eth-net inteliigence-api , we need to pass the password
+
+19)  make a file ws_secret.json
+
+20) add following in ws_secret.json file
+ {
+"ws-secret":"pass"
+}
+
+21) then start : nohup npm start &
+
+*************************** APP Runs at http://10.214.222.244:3000/ *********************************************
+
+
+

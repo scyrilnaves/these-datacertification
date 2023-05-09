@@ -1,0 +1,67 @@
+<div class=”container”>
+  <div class="reglist">
+
+    <table class="table table-striped">
+
+      <thead>
+
+        <tr>
+
+          <th>#</th>
+
+          <th>Method</th>
+
+          <th>Id</th>
+
+          <th>Purpose</th>
+
+          <th>Input1</th>
+
+          <th>Input2</th>
+
+          <th>Response</th>
+
+          <th></th>
+
+          <th></th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let User of users; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+
+          <td>{{ User.Method }}</td>
+
+          <td>{{ User.Id }}</td>
+
+          <td>{{ User.Purpose }}</td>
+
+          <td  *ngIf="User.Input1 != 'NA' "> <input type="text" [(ngModel)]=User.Input1></td>
+
+          <td  *ngIf="User.Input1 == 'NA' "> <div ></div></td>
+          
+          
+          <td  *ngIf="User.Input2 != 'NA'"> <input type="text" [(ngModel)]=User.Input2></td>
+
+          <td  *ngIf="User.Input2 == 'NA' "> <div ></div></td>
+
+          <td>{{ User.Response }}</td>
+
+          <td>
+            <button type="button" class="btn btn-info" (click)="onInvoke(i+1,User.Input1,User.Input2)">Go</button>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+  <br>
+</div>

@@ -1,0 +1,65 @@
+<legend>Trip Validation Information</legend>
+
+<div>
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> VIN: </b></label>
+    <div class="col-xs-6">{{routemodel.vin}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Start Place: </b></label>
+    <div class="col-xs-6">{{routemodel.start_place}}</div>
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Destination Place: </b></label>
+    <div class="col-xs-6">{{routemodel.destination_place}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Start Latitude: </b></label>
+    <div class="col-xs-6">{{routemodel.startcoordinate[1]}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Start Longitude: </b></label>
+    <div class="col-xs-6">{{routemodel.startcoordinate[0]}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Destination latitude: </b></label>
+    <div class="col-xs-6">{{routemodel.destinationcoordinate[1]}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Destination Longitude: </b></label>
+    <div class="col-xs-6">{{routemodel.destinationcoordinate[0]}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Distance Calculation Deviation: </b></label>
+    <div class="col-xs-6">{{routemodel.deviation}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b>Actual Distance: </b></label>
+    <div class="col-xs-6">{{routemodel.distance}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Distance Calculated: </b></label>
+    <div class="col-xs-6">{{routemodel.calculateddistance}}</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-6-col-form-label"><b> Valid Data: </b></label>
+    <div class="col-xs-6">{{routemodel.valid}}</div>
+  </div>
+  <div>
+    <button (click)="onSubmit()" class="btn btn-primary">Store in Blockchain</button>
+  </div>
+
+</div>
+<div>
+</div>

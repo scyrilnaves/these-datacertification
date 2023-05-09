@@ -1,0 +1,339 @@
+Step Logger:
+
+https://levelup.gitconnected.com/simple-application-with-angular-6-node-js-express-2873304fff0f
+
+https://grokonez.com/node-js/nodejs-express-rest-apis-bootstrap-table-angularjs
+
+https://codeburst.io/getting-started-with-angular-7-and-bootstrap-4-styling-6011b206080
+
+http://localhost:4200/location/23
+
+Check the node versions:
+
+node -v
+
+npm -v
+
+npm install -g @angular/cli
+
+migrate to directory
+/home/renault/Documents/Phase2/source/front
+
+
+sudo ng new odometer
+ls
+cd odometer/
+ls
+ng serve
+
+localhost:4200
+------------------
+
+New Component
+ inside: /home/renault/Documents/Phase2/source/front/odometer
+
+sudo ng generate component input-form-main --spec false
+
+
+----
+install bootstrap
+
+npm install --save bootstrap
+
+
+add css file in angular.json
+
+"styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+--------------------------------------------            
+
+add following in app.component.html
+
+<div class ="container-fluid">
+  <div class="row">
+    <div class = "col-xs-12">
+      <h1>Hello World</h1>
+    </div>
+  </div>
+</div>
+------------------------------
+
+To avoid cors and redirect api call to node app hosted in 3000
+
+In root folder : create  vi proxy.conf.json and add the following
+
+{
+  "/api/*": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
+
+Then restart the application using : 
+
+sudo ng serve --proxy-config proxy.conf.json
+
+------------------------
+
+Start with form-main.component.html
+
+-------------------------
+
+Add reactive forms:
+
+FORMBUILDER ------> FORM GROUP && FORMCONTROLS
+
+
+------------------------
+
+NODEJS API:
+
+express-generator-api
+
+
+npm install -g express-generator-api
+
+express-api odometerapi
+
+sudo npm install
+
+
+----------------------
+
+gecoding api:
+
+To Make Request for API gecoding:
+
+https://nominatim.openstreetmap.org/search.php?q=nice&polygon_geojson=1&viewbox=
+
+https://nominatim.openstreetmap.org/search/nice?format=json&addressdetails=1&limit=1&polygon_svg=1
+
+Shorted for NICE: https://nominatim.openstreetmap.org/search/nice?format=json&limit=1
+
+CANNES: https://nominatim.openstreetmap.org/search/cannes?format=json&limit=1
+
+ROUEN: https://nominatim.openstreetmap.org/search/rouen?format=json&limit=1
+
+RESPONSE:
+
+[
+  {
+    "place_id": 198116304,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 75628,
+    "boundingbox": [
+      "49.4172001",
+      "49.4652606",
+      "1.0300648",
+      "1.1521157"
+    ],
+    "lat": "49.4404591",
+    "lon": "1.0939658",
+    "display_name": "Rouen, Seine-Maritime, Normandy, Metropolitan France, France",
+    "class": "place",
+    "type": "city",
+    "importance": 0.76465958746241,
+    "icon": "https://nominatim.openstreetmap.org/images/mapicons/poi_place_city.p.20.png"
+  }
+]
+
+npm install request
+
+https://github.com/request/request
+https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html
+
+https://osmnames.org/api/
+
+
+npm start
+--------------------
+
+HAVERSINE Distaince
+
+https://www.npmjs.com/package/haversine
+
+------------------------------
+
+Start the interface with Blockchain API:
+
+Ethereum:
+
+npm install web3 --save
+
+web3 library will interact with the contract
+
+Then get the ABI from the build directory of truffle inside contracts sub-directory:
+
+
+
+Multichain:
+
+npm install multichain-node --save
+
+========================================
+
+npm install --save@ng-bootstrap/ng-bootstrap 
+
+npm install --save@ng-bootstrap/ng-bootstrap
+ng generate component ethereumnavbar
+ng generate component ethereumhome
+ng generate component ethereumadmin
+ng generate component ethereumuser
+ng generate component ethereumcommon
+ng generate component multichainnavbar
+ng generate component multichainhome
+ng generate component multichainuser
+ng generate component multichaincommon
+
+npm install --save @ng-bootstrap/ng-bootstrap
+
+npm install --save jquery
+npm install --save popper.js
+
+npm install --save-dev @angular-devkit/build-angular
+
+
+https://medium.com/@mail.bahurudeen/simple-crud-functionality-using-angular-5-with-bootstrap-4-f7baac0d2000
+
+https://medium.com/@mail.bahurudeen/simple-crud-functionality-using-angular-5-with-bootstrap-4-f7baac0d2000
+
+https://github-bbbiff.stackblitz.io/registration
+
+https://levelup.gitconnected.com/simple-application-with-angular-6-node-js-express-2873304fff0f
+
+https://getbootstrap.com/docs/4.0/utilities/colors/
+
+https://www.w3schools.com/bootstrap/bootstrap_ref_js_collapse.asp
+
+https://getbootstrap.com/docs/4.0/components/navbar/
+
+hackernoon ethereum blockchain exploere from scratch==========>
+
+
+sudo npm remove -g @angular/cli
+sudo npm install -g @angular/cli
+npm install --save @ng-bootstrap/ng-bootstrap
+
+/////////////////////////
+Working solution:https://github.com/angular/angular-cli/issues/14546 
+
+ng update @angular/cli @angular/core --allow-dirty
+sudo ng serve --proxy-config proxy.conf.json
+npm uninstall @angular-devkit/build-angular
+npm install @angular-devkit/build-angular
+ng update --all  --allow-dirty --force
+npm install typescript@">=3.4.0 <3.5.0" 
+sudo ng serve --proxy-config proxy.conf.json
+
+
+For exposing out:
+
+ng serve --proxy-config proxy.conf.json --host 0.0.0.0
+
+# nohup ng serve --proxy-config proxy.conf.json --host 0.0.0.0 &
+
+//////////////////////////////////My packages: 
+
+@angular-devkit/architect         0.800.3
+@angular-devkit/build-angular     0.800.3
+@angular-devkit/build-optimizer   0.800.3
+@angular-devkit/build-webpack     0.800.3
+@angular-devkit/core              8.0.3
+@angular-devkit/schematics        8.0.3
+@angular/cli                      8.0.3
+@ngtools/webpack                  8.0.3
+@schematics/angular               8.0.3
+@schematics/update                0.800.3
+rxjs                              6.5.2
+typescript                        3.4.5
+webpack                           4.30.0
+===============================================
+
+npm install --save bootstrap
+npm install --save @ng-bootstrap/ng-bootstrap
+
+
+npm install csv-writer
+----------------------------------
+
+sudo npm install --save-dev  web3-eth-admin
+   42  sudo npm install --save-dev  web3-eth-txpool
+   43  sudo npm install --save-dev  web3-eth-debug
+   
+   
+   =============================================
+   
+   
+   https://stackoverflow.com/questions/48552763/osrm-extracting-profile-profiles-car-lua-not-found
+   
+   https://www.digitalocean.com/community/tutorials/how-to-set-up-an-osrm-server-on-ubuntu-14-04
+   
+   
+   The last error tells you that your .osm file is not a XML file. I would suspect you feed it a PBF file by accident? The correct extension for a PBF file is .osm.pbf, we need this to auto-detect the file format.
+
+The guide you linked is outdated with the current OSRM 5.x series.
+
+    Download a dataset in the .osm.pbf format from geofabrik.de
+    We don't require STXXL anymore so you don't need to compile it.
+    Run osrm-extract map.osm.pbf -p profiles/car.lua
+    Run osrm-contract map.osrm
+    Run osrm-routed map.osrm to start the server.
+
+
+=========================================================
+
+449  2019-06-26 19:53:02 wget http://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-latest.osm.pbf -e use_proxy=yes -e http_proxy=http://p100298:Naves266@cosmos-vip.intra.renault.fr:3128/
+  450  2019-06-26 19:54:19 osrm-extract provence-alpes-cote-d-azur-latest.osm.pbf -p osrm-backend/profiles/car.lua
+  451  2019-06-26 19:58:21 osrm-prepare provence-alpes-cote-d-azur-latest.osrm -p osrm-backend/profiles/car.lua
+  452  2019-06-26 19:59:07 osrm-contract provence-alpes-cote-d-azur-latest.osrm -p osrm-backend/profiles/car.lua
+  453  2019-06-26 19:59:19 osrm-contract provence-alpes-cote-d-azur-latest.osrm
+  454  2019-06-26 18:30:39 osrm-extract map.osm.pbf -p osrm-backend/profiles/car.lua
+  455  2019-06-26 20:03:40 osrm-routed provence-alpes-cote-d-azur-latest.osrm
+  456  2019-06-26 20:06:15 nohup osrm-routed provence-alpes-cote-d-azur-latest.osrm &
+
+
+
+======================
+
+https://programtheblockchain.com/posts/2018/01/24/logging-and-watching-solidity-events/
+
+
+	https://nominatim.org/release-docs/develop/api/Search/
+https://wiki.openstreetmap.org/wiki/Nominatim
+
+
+https://asmaloney.com/2014/01/code/creating-an-interactive-map-with-leaflet-and-openstreetmap/
+http://project-osrm.org/docs/v5.22.0/api/?language=cURL#tile-service
+http://router.project-osrm.org/route/v1/driving/13.388860,52.517037;13.428555,52.523219?overview=false&steps=true
+
+
+https://levelup.gitconnected.com/simple-application-with-angular-6-node-js-express-2873304fff0f  <=======================>
+
+https://grokonez.com/node-js/nodejs-express-rest-apis-bootstrap-table-angularjs
+
+https://codeburst.io/getting-started-with-angular-7-and-bootstrap-4-styling-6011b206080
+
+https://www.sitepoint.com/build-simple-beginner-app-node-bootstrap-mongodb/
+
+
+http://router.project-osrm.org/route/v1/driving/13.388860,52.517037;13.428555,52.523219?overview=false&steps=true
+
+http://project-osrm.org/docs/v5.22.0/api/?language=cURL#tile-service
+
+DATA NAVIGATION:
+
+https://medium.com/@iamvishalkhare/angular-routing-navigation-bab9880ec4be
+
+https://codehandbook.org/use-leaflet-in-angular/
+
+
+--------------------------------------------------
+
+PART 2:
+
+https://medium.com/@mail.bahurudeen/simple-crud-functionality-using-angular-5-with-bootstrap-4-f7baac0d2000
